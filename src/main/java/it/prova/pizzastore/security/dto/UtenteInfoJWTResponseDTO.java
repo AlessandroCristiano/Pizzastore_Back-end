@@ -1,18 +1,20 @@
 package it.prova.pizzastore.security.dto;
 
+import java.util.List;
+
 public class UtenteInfoJWTResponseDTO {
 
 	private String nome;
 	private String cognome;
 	private String type = "Bearer";
 	private String username;
-	private String role;
+	private List<String> roles;
 
-	public UtenteInfoJWTResponseDTO(String nome, String cognome, String username, String ruolo) {
+	public UtenteInfoJWTResponseDTO(String nome, String cognome, String username, List<String> roles) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.username = username;
-		this.role = ruolo;
+		this.roles = roles;
 	}
 
 	public String getTokenType() {
@@ -31,8 +33,8 @@ public class UtenteInfoJWTResponseDTO {
 		this.username = username;
 	}
 
-	public String getRoles() {
-		return role;
+	public List<String> getRoles() {
+		return roles;
 	}
 
 	public String getNome() {
