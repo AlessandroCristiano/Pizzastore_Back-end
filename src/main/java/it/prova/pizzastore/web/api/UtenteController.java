@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.prova.pizzastore.dto.OrdineDTO;
+import it.prova.pizzastore.dto.UtenteDTO;
 import it.prova.pizzastore.model.Utente;
 import it.prova.pizzastore.security.dto.UtenteInfoJWTResponseDTO;
 import it.prova.pizzastore.service.UtenteService;
@@ -41,5 +43,10 @@ public class UtenteController {
 
 		return ResponseEntity.ok(new UtenteInfoJWTResponseDTO(utenteLoggato.getNome(), utenteLoggato.getCognome(),
 				utenteLoggato.getUsername(), ruoli));
+	}
+	
+	@GetMapping
+	public List<UtenteDTO> listAll() {
+		return UtenteDTO.createUtenteDTOListFromModelList(utenteService.listAllUtenti());
 	}
 }

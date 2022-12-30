@@ -12,6 +12,7 @@ import it.prova.pizzastore.model.Pizza;
 import it.prova.pizzastore.model.Ruolo;
 import it.prova.pizzastore.model.Utente;
 import it.prova.pizzastore.service.ClienteService;
+import it.prova.pizzastore.service.OrdineService;
 import it.prova.pizzastore.service.PizzaService;
 import it.prova.pizzastore.service.RuoloService;
 import it.prova.pizzastore.service.UtenteService;
@@ -30,6 +31,9 @@ public class PizzastoreApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PizzaService pizzaServiceInstance;
+	
+	@Autowired
+	private OrdineService ordineServiceInstance;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PizzastoreApplication.class, args);
@@ -91,6 +95,7 @@ public class PizzastoreApplication implements CommandLineRunner{
 		
 		Pizza pizza = new Pizza("margherita", "pomodoro", 5);
 		pizzaServiceInstance.inserisciNuovo(pizza);
+		
 		
 		
 	}

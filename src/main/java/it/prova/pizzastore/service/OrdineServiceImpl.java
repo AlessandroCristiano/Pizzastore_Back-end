@@ -65,4 +65,19 @@ public class OrdineServiceImpl implements OrdineService{
 		return repository.findByExample(example);
 	}
 
+	@Override
+	@Transactional
+	public void changeAbilitation(Long id) {
+		Ordine ordineInstance = caricaSingoloElemento(id);
+		if (ordineInstance == null)
+			throw new NotFoundException("Elemento non trovato.");
+
+		if (ordineInstance.getClosed()) {
+			ordineInstance.setClosed(false);
+		} else {
+			ordineInstance.setClosed(true);
+		}
+
+	}
+
 }

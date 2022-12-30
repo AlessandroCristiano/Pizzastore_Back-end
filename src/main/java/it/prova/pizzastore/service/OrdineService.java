@@ -17,5 +17,7 @@ public interface OrdineService {
 	public void rimuovi(Long idToRemove);
 	
 	public List<Ordine> findByExample(Ordine example);
+	
+	public void changeAbilitation(Long id);
 
 }
