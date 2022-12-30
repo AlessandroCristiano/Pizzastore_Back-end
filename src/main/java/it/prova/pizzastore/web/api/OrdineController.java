@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.prova.pizzastore.dto.ClienteDTO;
 import it.prova.pizzastore.dto.OrdineDTO;
+import it.prova.pizzastore.dto.StatisticheOrdiniDTO;
 import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.service.OrdineService;
 import it.prova.pizzastore.web.api.exception.IdNotNullForInsertException;
@@ -76,6 +78,32 @@ public class OrdineController {
 	@GetMapping("changeAbilitation/{id}")
 	public void changeAbilitation(@PathVariable(value= "id", required = true) long id) {
 		ordineService.changeAbilitation(id);
+	}
+	
+	@PostMapping("/search")
+	public List<OrdineDTO> search(@RequestBody OrdineDTO example) {
+		return OrdineDTO.createOrdineDTOListFromModelList(ordineService.findByExample(example.buildOrdineModel()));
+	}
+	
+	@PostMapping("/ricaviTotaliBetween")
+	public Integer ricaviTotaliBetween(@Valid @RequestBody StatisticheOrdiniDTO dateInput) {
+		return ordineService.ricaviTotaliBetween(dateInput.getDataInizio(), dateInput.getDataFine());
+	}
+	
+	@PostMapping("/ordiniTotaliBetween")
+	public Integer ordiniTotaliBetween(@Valid @RequestBody StatisticheOrdiniDTO dateInput) {
+		return ordineService.ordiniTotaliBetween(dateInput.getDataInizio(), dateInput.getDataFine());
+	}
+	
+	@PostMapping("/pizzeTotaliBetween")
+	public Integer pizzeTotaliBetween(@Valid @RequestBody StatisticheOrdiniDTO dateInput) {
+		return ordineService.pizzeOrdinateBetween(dateInput.getDataInizio(), dateInput.getDataFine());
+	}
+	
+	@PostMapping("/clientiVirtuosiBetween")
+	public List<ClienteDTO> clientiVirtuosiWithOrdineBetween(@Valid @RequestBody StatisticheOrdiniDTO dateInput) {
+		return ClienteDTO.createClienteDTOListFromModelList(
+				ordineService.clientiVirtuosiBetween(dateInput.getDataInizio(), dateInput.getDataFine()));
 	}
 	
 }

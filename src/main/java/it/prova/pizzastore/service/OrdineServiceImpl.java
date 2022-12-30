@@ -1,11 +1,13 @@
 package it.prova.pizzastore.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.repository.ordine.OrdineRepository;
 import it.prova.pizzastore.web.api.exception.NotFoundException;
@@ -78,6 +80,26 @@ public class OrdineServiceImpl implements OrdineService{
 			ordineInstance.setClosed(true);
 		}
 
+	}
+
+	@Override
+	public Integer ricaviTotaliBetween(LocalDate dataInizio, LocalDate dataFine) {
+		return repository.calcolaRicaviTotaliTra(dataInizio, dataFine);
+	}
+
+	@Override
+	public Integer ordiniTotaliBetween(LocalDate dataInizio, LocalDate dataFine) {
+		return repository.countByDataBetween(dataInizio, dataFine);
+	}
+
+	@Override
+	public Integer pizzeOrdinateBetween(LocalDate dataInizio, LocalDate dataFine) {
+		return repository.countPizzeOrderedBetween(dataInizio, dataFine);
+	}
+
+	@Override
+	public List<Cliente> clientiVirtuosiBetween(LocalDate dataInizio, LocalDate dataFine) {
+		return repository.findAllClientiVirtuosiBetween(dataInizio, dataFine);
 	}
 
 }

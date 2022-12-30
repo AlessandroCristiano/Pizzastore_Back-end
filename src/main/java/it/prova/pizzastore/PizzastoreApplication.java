@@ -96,8 +96,6 @@ public class PizzastoreApplication implements CommandLineRunner{
 		Pizza pizza = new Pizza("margherita", "pomodoro", 5);
 		pizzaServiceInstance.inserisciNuovo(pizza);
 		
-		
-		
 	}
 
 }
