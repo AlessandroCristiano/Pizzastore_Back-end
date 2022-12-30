@@ -7,8 +7,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.model.Ruolo;
 import it.prova.pizzastore.model.Utente;
+import it.prova.pizzastore.service.ClienteService;
 import it.prova.pizzastore.service.RuoloService;
 import it.prova.pizzastore.service.UtenteService;
 
@@ -20,6 +22,9 @@ public class PizzastoreApplication implements CommandLineRunner{
 
 	@Autowired
 	private RuoloService ruoloServiceInstance;
+	
+	@Autowired
+	private ClienteService clienteServiceInstance;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PizzastoreApplication.class, args);
@@ -76,7 +81,9 @@ public class PizzastoreApplication implements CommandLineRunner{
 			utenteServiceInstance.changeUserAbilitation(fattorino.getId());
 		}
 		
+		Cliente cliente = new Cliente("luca", "belgianni", "via");
 		
+		clienteServiceInstance.inserisciNuovo(cliente);
 		
 		
 		

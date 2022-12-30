@@ -27,6 +27,17 @@ public class Cliente {
 	public Cliente() {
 		super();
 	}
+	
+	
+
+	public Cliente(String nome, String cognome, String indirizzo) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.indirizzo = indirizzo;
+	}
+
+
 
 	public Cliente(Long id, String nome, String cognome, String indirizzo, Boolean attivo) {
 		super();
