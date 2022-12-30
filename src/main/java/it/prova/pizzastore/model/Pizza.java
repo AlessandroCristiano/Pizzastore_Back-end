@@ -33,6 +33,13 @@ public class Pizza {
 		this.id = id;
 	}
 
+	public Pizza(String descrizione, String ingredienti, Integer prezzoBase) {
+		super();
+		this.descrizione = descrizione;
+		this.ingredienti = ingredienti;
+		this.prezzoBase = prezzoBase;
+	}
+
 	public Pizza(Long id, String descrizione, String ingredienti, Integer prezzoBase, Boolean attivo) {
 		super();
 		this.id = id;

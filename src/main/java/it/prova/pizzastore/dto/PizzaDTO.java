@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -20,7 +21,7 @@ public class PizzaDTO {
 	@NotBlank(message = "{ingredienti.notblank}")
 	private String ingredienti;
 	
-	@NotBlank(message = "{prezzobase.notblank}")
+	@NotNull(message = "{prezzobase.notblank}")
 	private Integer prezzoBase;
 	
 	private Boolean attivo;
