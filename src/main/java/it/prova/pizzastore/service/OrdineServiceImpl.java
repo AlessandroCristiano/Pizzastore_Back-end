@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.prova.pizzastore.model.Cliente;
 import it.prova.pizzastore.model.Ordine;
+import it.prova.pizzastore.model.Utente;
 import it.prova.pizzastore.repository.ordine.OrdineRepository;
+import it.prova.pizzastore.repository.utente.UtenteRepository;
 import it.prova.pizzastore.web.api.exception.NotFoundException;
 
 @Service
@@ -18,6 +20,9 @@ public class OrdineServiceImpl implements OrdineService{
 	
 	@Autowired
 	private OrdineRepository repository;
+	
+	@Autowired
+	private UtenteRepository utenteRepository;
 
 	@Override
 	public List<Ordine> listAll() {
@@ -100,6 +105,15 @@ public class OrdineServiceImpl implements OrdineService{
 	@Override
 	public List<Cliente> clientiVirtuosiBetween(LocalDate dataInizio, LocalDate dataFine) {
 		return repository.findAllClientiVirtuosiBetween(dataInizio, dataFine);
+	}
+
+	@Override
+	public List<Ordine> ordiniPerFattorino(String username) {
+		Utente fattorino = utenteRepository.findByUsername(username).orElse(null);
+		if (fattorino == null)
+			throw new NotFoundException("Utente Not Found con username: " + username);
+
+		return repository.findAllOrdiniApertiPerFattorino(fattorino.getId());
 	}
 
 }

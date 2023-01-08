@@ -49,4 +49,9 @@ public class UtenteController {
 	public List<UtenteDTO> listAll() {
 		return UtenteDTO.createUtenteDTOListFromModelList(utenteService.listAllUtenti());
 	}
+	
+	@GetMapping("/fattorini")
+	public List<UtenteDTO> findAllFattorini() {
+		return UtenteDTO.createUtenteDTOListFromModelList(utenteService.getAllFattorini());
+	}
 }

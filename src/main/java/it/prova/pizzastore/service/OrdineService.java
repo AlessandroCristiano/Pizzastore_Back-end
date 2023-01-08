@@ -29,5 +29,7 @@ public interface OrdineService {
 	public Integer pizzeOrdinateBetween(LocalDate dataInizio, LocalDate dataFine);
 	
 	public List<Cliente> clientiVirtuosiBetween(LocalDate dataInizio, LocalDate dataFine);
+	
+	public List<Ordine> ordiniPerFattorino(String username);
 
 }
